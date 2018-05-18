@@ -1,6 +1,6 @@
 package main
 
-// golang.org, golang-book.com
+// golang.org, golang-book.com, blog.golang.org/index
 
 import "fmt"
 
@@ -26,4 +26,14 @@ func main() {
 	fmt.Println(theName)
 
 	fmt.Println(wrapper()())
+
+	// httpStuff()
+
+	fmt.Println(myConstant)
+
+	fmt.Println(aio, bio, cio, KB, MB)
+
+	theIotas()
+
+	memory()
 }

@@ -4,6 +4,7 @@ import "fmt"
 
 var myName = "Jaiye"
 var theName = "Johnny"
+const myConstant string = "This does not change"
 
 func printString(name string) {
 	fmt.Println(name + " from a func defined in vars...")
@@ -16,4 +17,10 @@ func wrapper() func() int {
 		x++
 		return x
 	}
+}
+
+func memory() {
+	a := "some memory info"
+	output := fmt.Sprint(a, " memory address is: ", &a)
+	fmt.Println(output)
 }
