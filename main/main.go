@@ -1,6 +1,6 @@
 package main
 
-// golang.org, golang-book.com, blog.golang.org/index
+// golang.org, golang-book.com, blog.golang.org/index, forum.golangbridge.org
 
 import "fmt"
 
