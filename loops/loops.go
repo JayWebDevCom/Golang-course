@@ -7,6 +7,11 @@ func main() {
 	// myLoopBreak()
 	// myFor()
 	myContinue()
+
+	for i := 0; i < len([]int{1, 2, 3, 4, 5, 6, 7, 8, 9}); i++ {
+		fmt.Printf("%d ", []int{1, 2, 3, 4, 5, 6, 7, 8, 9}[i])
+	}
+
 }
 
 func myLoop() {
