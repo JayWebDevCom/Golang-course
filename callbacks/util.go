@@ -13,3 +13,19 @@ func visit(numbers []int, myCallback func(int)) {
 		myCallback(number)
 	}
 }
+
+func getFunc2() func(int) bool {
+	return func(n int) bool {
+		return n%3 == 0
+	}
+}
+
+func filter(numbers []int, myCallback func(int) bool) []int {
+	xs := []int{}
+	for _, number := range numbers {
+		if myCallback(number) {
+			xs = append(xs, number)
+		}
+	}
+	return xs
+}
