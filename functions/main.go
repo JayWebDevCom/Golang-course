@@ -34,4 +34,10 @@ func main() {
 	fmt.Println(average(3, 33, 333, 3333))
 	fmt.Println(variadics())
 	fmt.Println(variadicFunction())
+
+	fmt.Println()
+	increment := wrapper()
+	fmt.Println(increment())
+	fmt.Println(increment())
+	fmt.Println(increment())
 }
