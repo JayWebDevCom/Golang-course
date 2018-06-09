@@ -2,10 +2,11 @@ package array
 
 import . "fmt"
 
-// Arr1 is exported
-func Arr1() {
+// Array1 is exported
+func Array1() {
 
 	var a [3]string = [3]string{"one", "two"}
+	Println("-----")
 
 	Printf("type: %T\n", a)
 	Println("length: ", len(a))
@@ -20,8 +21,8 @@ func Arr1() {
 
 }
 
-// Arr2 is exported
-func Arr2() {
+// Array2 is exported
+func Array2() {
 	Println("-----")
 	var x [25]int
 	Printf("length: %d\n", len(x))
