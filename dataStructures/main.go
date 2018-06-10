@@ -2,14 +2,21 @@ package main
 
 // gobyexample.com
 // golang.org/ref/spec
+// book - The Go Programming Language by A. Donovan
+// book Go In Action by W Kennedy
+// book The Wat Ti Go K Ascher
 
 /*
+reference types stored in the heap
+value types stored in the stack
+
 reference types - pass references to memory addresses
 referencing types reference an underlying data type
 
 map
-
-
+reference type - stores an address to where data is stored
+elements removed with the inbuild delete(mapName, key) function
+if the key does not have a value, the key will return the zero value of that Type!
 
 type
 array
@@ -52,4 +59,6 @@ func main() {
 	Slice8()
 
 	Map1()
+	Map2()
+	Map3()
 }
