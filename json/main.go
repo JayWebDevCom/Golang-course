@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"strings"
 )
 
 /*
@@ -39,6 +41,31 @@ func main() {
 	fmt.Println("Dog weight:", dog.Weight)
 	fmt.Println("Dog sex:", dog.sex)
 	fmt.Println("Dog :", dog.Owner)
+
+	fmt.Println()
+	fmt.Println("Encode")
+
+	// Encode to send out to a stream - use a writer
+
+	tyrion := person{"Tyrion", "Lannister", 39, true}
+	// NewEncoder takes a writer and returns a pointer to a new encoder
+	encoder := json.NewEncoder(os.Stdout)
+	fmt.Printf("Encoder is a %T\n", encoder)
+	encoder.Encode(tyrion)
+
+	fmt.Println()
+	// Decode to read from a stream - use a reader
+	fmt.Println("DeCode")
+	// use verbose declaration because it must be at zero value
+	var catelyn person
+	catelynJSON := `{"FirstName":"Catelyn","LastName":"Tully","Age":50}`
+	reader := strings.NewReader(catelynJSON)
+	decoder := json.NewDecoder(reader)
+	// get a pointer to a decoder
+	fmt.Printf("Decoder is a %T\n", decoder)
+	// decode by passing in the addressq
+	decoder.Decode(&catelyn)
+	fmt.Println("Catelyn:", catelyn)
 }
 
 // Dog is exported but does not need to be here
@@ -52,4 +79,11 @@ type Dog struct {
 	Weight int    `json:"Mass in Kg"`
 	sex    string // will not be marshaled or unmarshaled because field is not exported
 	Owner  string `json:"-"` // will not be marshaled or unmarshaled bcause of tag
+}
+
+type person struct {
+	FirstName   string
+	LastName    string
+	Age         int
+	notExported bool
 }
