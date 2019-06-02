@@ -6,6 +6,7 @@ import (
 	"sync"
 	"time"
 
+	"./mutexConcurrency"
 	"./racecondition"
 )
 
@@ -70,4 +71,7 @@ func main() {
 
 	fmt.Println("Now demonstrating the race condition")
 	racecondition.Race()
+
+	fmt.Println("Now demonstrating the mutex")
+	mutexConcurrency.Mutex()
 }
