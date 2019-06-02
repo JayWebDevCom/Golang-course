@@ -6,6 +6,7 @@ import (
 	"sync"
 	"time"
 
+	"./atomicity"
 	"./mutexConcurrency"
 	"./racecondition"
 )
@@ -16,6 +17,9 @@ import (
 
  concurrency - doing many things at once - but only one at a time
  paralellism - doing many things at the same time
+
+ go run main.go
+ go run -race main.go
 */
 
 func init() {
@@ -74,4 +78,7 @@ func main() {
 
 	fmt.Println("Now demonstrating the mutex")
 	mutexConcurrency.Mutex()
+
+	fmt.Println("Now demonstrating the atomicity")
+	atomicity.Atomicity()
 }
