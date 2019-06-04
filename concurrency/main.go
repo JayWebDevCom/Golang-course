@@ -7,7 +7,9 @@ import (
 	"time"
 
 	"./atomicity"
+	"./channels"
 	"./mutexConcurrency"
+	"./sameChannel"
 	"./racecondition"
 )
 
@@ -81,4 +83,13 @@ func main() {
 
 	fmt.Println("Now demonstrating the atomicity")
 	atomicity.Atomicity()
+
+	fmt.Println("Now demonstrating the unbuffered channel")
+	channels.UnbufferedChannel()
+
+	fmt.Println("Now demonstrating the closed channel")
+	channels.ClosedChannel()
+
+	fmt.Println("Now demonstrating functions writing to the same channel")
+	sameChannel.SameChannel()
 }
