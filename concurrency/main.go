@@ -9,6 +9,7 @@ import (
 
 	"./atomicity"
 	"./channels"
+	"./channelsAsArguments"
 	"./mutexConcurrency"
 	"./racecondition"
 	"./sameChannel"
@@ -100,4 +101,7 @@ func main() {
 
 	fmt.Println("Now demonstrating semaphores in a loop")
 	semaphores.SemaphoreLoop()
+
+	fmt.Println("Now demonstrating channels as arguments")
+	channelsAsArguments.ChannelsAsArguments()
 }
