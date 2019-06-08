@@ -104,4 +104,7 @@ func main() {
 
 	fmt.Println("Now demonstrating channels as arguments")
 	channelsAsArguments.ChannelsAsArguments()
+
+	fmt.Println("Now demonstrating channels with direction")
+	channelsAsArguments.ChannelsDirection()
 }
