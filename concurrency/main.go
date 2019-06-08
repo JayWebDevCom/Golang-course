@@ -2,15 +2,17 @@ package main
 
 import (
 	"fmt"
+	"time"
+
 	"runtime"
 	"sync"
-	"time"
 
 	"./atomicity"
 	"./channels"
 	"./mutexConcurrency"
-	"./sameChannel"
 	"./racecondition"
+	"./sameChannel"
+	"./semaphores"
 )
 
 /*
@@ -92,4 +94,10 @@ func main() {
 
 	fmt.Println("Now demonstrating functions writing to the same channel")
 	sameChannel.SameChannel()
+
+	fmt.Println("Now demonstrating semaphores")
+	semaphores.Semaphore()
+
+	fmt.Println("Now demonstrating semaphores in a loop")
+	semaphores.SemaphoreLoop()
 }
