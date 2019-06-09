@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"./atomicity"
+	"./challenge"
 	"./channels"
 	"./channelsAsArguments"
 	"./mutexConcurrency"
@@ -107,4 +108,16 @@ func main() {
 
 	fmt.Println("Now demonstrating channels with direction")
 	channelsAsArguments.ChannelsDirection()
+
+	fmt.Println("Now demonstrating Deadlock challenge one")
+	challenge.DeadlockChallengeOne()
+
+	fmt.Println("Now demonstrating Deadlock challenge two")
+	challenge.DeadLockChallengeTwo()
+
+	fmt.Println("Now demonstrating Deadlock challenge three")
+	challenge.DeadLockChallengeThree()
+
+	fmt.Println("Now demonstrating Deadlock challenge factorial")
+	challenge.DeadLockChallengeFactorial()
 }
