@@ -15,6 +15,7 @@ import (
 	"./racecondition"
 	"./sameChannel"
 	"./semaphores"
+	"./pipelines"
 )
 
 /*
@@ -120,4 +121,16 @@ func main() {
 
 	fmt.Println("Now demonstrating Deadlock challenge factorial")
 	challenge.DeadLockChallengeFactorial()
+
+	fmt.Println("Now demonstrating Pipelines")
+	pipelines.Pipelines()
+
+	fmt.Println("Now demonstrating Factorial Challenge With Mutex")
+	pipelines.FactorialChallengeWithWGMutex()
+
+	fmt.Println("Now demonstrating Factorial Challenge")
+	pipelines.FactorialChallenge()
+
+	fmt.Println("Now demonstrating Factorial Challenge")
+	pipelines.FactorialChallengeSolution()
 }
