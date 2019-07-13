@@ -16,6 +16,7 @@ import (
 	"./sameChannel"
 	"./semaphores"
 	"./pipelines"
+	"./fanOutFanIn"
 )
 
 /*
@@ -133,4 +134,10 @@ func main() {
 
 	fmt.Println("Now demonstrating Factorial Challenge")
 	pipelines.FactorialChallengeSolution()
+
+	fmt.Println("Now demonstrating FanOut")
+	fanOutFanIn.FanOut()
+
+	fmt.Println("Now demonstrating FanIn")
+	fanOutFanIn.FanIn()
 }
