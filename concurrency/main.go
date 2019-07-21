@@ -16,7 +16,9 @@ import (
 	"./sameChannel"
 	"./semaphores"
 	"./pipelines"
-	"./fanOutFanIn"
+	"./fanoutfanin"
+
+	otherChallenge "./fanoutfanin/challenge"
 )
 
 /*
@@ -136,8 +138,23 @@ func main() {
 	pipelines.FactorialChallengeSolution()
 
 	fmt.Println("Now demonstrating FanOut")
-	fanOutFanIn.FanOut()
+	fanoutfanin.FanOut()
 
 	fmt.Println("Now demonstrating FanIn")
-	fanOutFanIn.FanIn()
+	fanoutfanin.FanIn()
+
+	fmt.Println("Now demonstrating FanInFanOut Challenge")
+	fanoutfanin.FOutFInChallenge()
+
+	fmt.Println("Now demonstrating FanInFanOut Factorial Challenge")
+	fanoutfanin.FanFactorial()
+
+	fmt.Println("Now demonstrating FanInFanOut Factorial Challenge Two")
+	fanoutfanin.FanFactorialTwo()
+
+	fmt.Println("Now demonstrating FanInFanOut Deadlock Challenge")
+	otherChallenge.DeadlockChallenge()
+
+	fmt.Println("Now demonstrating Incrementor solution")
+	otherChallenge.IncrementorSolution()
 }

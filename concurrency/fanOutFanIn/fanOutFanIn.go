@@ -1,4 +1,4 @@
-package fanOutFanIn
+package fanoutfanin
 
 import (
 	"fmt"
@@ -9,14 +9,12 @@ import (
 )
 
 /*
-some channel ->
-
 Fan out
  - multiple 'functions reading' from that channel until it is closed
 
 Fan in
  - multiple 'channels writing' to that channel
- */
+*/
 
 // FanOut is exported multiple 'functions reading' from that channel until it is closed
 func FanOut() {
@@ -70,13 +68,15 @@ func FanIn() {
 	// fan the work out
 	// distributing the squaring work across two go
 	// routine functions that both read from the same channel
+	// multiple 'functions reading' from that channel until it is closed
 	squares1 := square(channelOfInts)
 	squares2 := square(channelOfInts)
 
 	// Fan in
 	// fan the results in
 	// multiple 'channels writing' to that channel
-	allSquares := merge(squares1, squares2)
+	// - multiple 'channels writing' to that channel
+	allSquares := Merge(squares1, squares2)
 
 	for e := range allSquares {
 		fmt.Println(e)
@@ -110,9 +110,11 @@ func square(in <-chan int) <-chan int {
 	return out
 }
 
-func merge(channels ...<-chan int) <-chan int {
+// Merge is exported
+func Merge(channels ...<-chan int) <-chan int {
 	out := make(chan int)
 
+	// avoids deadlocks
 	var wg sync.WaitGroup
 	wg.Add(len(channels))
 
@@ -128,6 +130,168 @@ func merge(channels ...<-chan int) <-chan int {
 
 	// a channel to wait and close that needs to wait for
 	// the other go routine to finish
+	// starts after w.Add()
+	// calls wg.Wait() ie begin go routines
+	go func() {
+		wg.Wait()
+		close(out)
+	}()
+
+	return out
+}
+
+var workerID int
+var publisherID int
+
+// FOutFInChallenge is exported - it does fan out - but doesn't fan in
+func FOutFInChallenge() {
+	// fan out - yes many diff functions read from same channel
+	// fan in - converging many channels onto one channel - multiplexing - not here
+	// no fan in here
+	input := make(chan string)
+	go workerProcess(input)
+	go workerProcess(input)
+	go workerProcess(input)
+	go publisher(input)
+	go publisher(input)
+	go publisher(input)
+	go publisher(input)
+
+	time.Sleep(1 * time.Millisecond)
+}
+
+func workerProcess(in chan string) {
+	workerID++
+	thisID := workerID
+
+	for {
+		fmt.Printf("%d: waiting for input...\n", thisID)
+		input := <-in
+		fmt.Printf("%d: input is : %s\n", thisID, input)
+	}
+}
+
+func publisher(in chan string) {
+	publisherID++
+	thisID := publisherID
+	dataID := 0
+
+	for {
+		dataID++
+		fmt.Printf("publisher %d is pushing data\n", dataID)
+		data := fmt.Sprintf("data from publisher %d: data: %d", thisID, dataID)
+		in <- data
+	}
+}
+
+func correctFactorialSolution(n int) chan int {
+	c := make(chan int)
+	go func() {
+		total := 1
+		for i := n; i > 0; i-- {
+			total *= i
+		}
+		c <- total
+		close(c)
+	}()
+
+	return c
+}
+
+// FanFactorial is exported
+func FanFactorial() {
+
+	// prepare numbers for factorial
+	inNumbers := generateNumbers()
+
+	// Fan out - multiple 'functions reading' from that channel until it is closed
+	factorialResult1 := toFactorial(inNumbers)
+	factorialResult2 := toFactorial(inNumbers)
+	factorialResult3 := toFactorial(inNumbers)
+
+	allResults := mergeChallenge(factorialResult1, factorialResult2, factorialResult3)
+
+	for i := range allResults {
+		fmt.Printf("Number is %d\n", i)
+	}
+}
+
+// FanFactorialTwo is exported
+func FanFactorialTwo() {
+
+	// prepare numbers for factorial
+	inNumbers := generateNumbers()
+
+	// Fan out - multiple 'functions reading' from that channel until it is closed
+	var chanSlice [] <-chan int
+
+	for i := 0; i < 10; i++ {
+		chanSlice = append(chanSlice, toFactorial(inNumbers))
+	}
+
+	fmt.Printf("There have been %d channels fanned out to\n", len(chanSlice))
+
+	allResults := mergeChallenge(chanSlice...)
+
+	counter := 0
+	for result := range allResults {
+		counter++
+		fmt.Printf("This is iteration %d \t Number is %d\n", counter, result)
+	}
+}
+
+
+
+func generateNumbers() <-chan int {
+	intSlice := []int{10, 11, 12, 13, 14, 15, 16, 19, 18, 19}
+	out := make(chan int)
+
+	go func() {
+		for i := 0; i < 100; i++ {
+			for _, j := range intSlice {
+				out <- j
+			}
+		}
+		close(out)
+	}()
+
+	return out
+}
+
+func toFactorial(in <-chan int) <-chan int {
+	out := make(chan int)
+
+	go func() {
+		for n := range in {
+			total := 1
+			for i := n; i > 0; i-- {
+				total *= i
+			}
+			out <- total
+		}
+		close(out)
+	}()
+
+	return out
+}
+
+func mergeChallenge(inChannels ...<-chan int) <-chan int {
+
+	// avoids deadlocks
+	var wg sync.WaitGroup
+	wg.Add(len(inChannels))
+
+	out := make(chan int)
+
+	for _, channel := range inChannels {
+		go func(ch <-chan int) {
+			for e := range ch {
+				out <- e
+			}
+			wg.Done()
+		}(channel)
+	}
+
 	go func() {
 		wg.Wait()
 		close(out)
