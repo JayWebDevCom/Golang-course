@@ -241,7 +241,6 @@ func FanFactorialTwo() {
 }
 
 
-
 func generateNumbers() <-chan int {
 	intSlice := []int{10, 11, 12, 13, 14, 15, 16, 19, 18, 19}
 	out := make(chan int)

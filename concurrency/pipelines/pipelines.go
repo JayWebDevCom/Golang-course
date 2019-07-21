@@ -12,11 +12,11 @@ https://blog.golang.org/pipelines
 
 // Pipelines is exported
 func Pipelines() {
-	var generatedChannel <-chan int = generateChannel(2, 3, 4, 5, 6)
+	var generatedChannel = generateChannel(2, 3, 4, 5, 6)
 
 	// cube the cubes
-	var actedOnValuesChannel <-chan int = powerOf(generatedChannel)
-	var actedOnValuesChannel2 <-chan int = powerOf(actedOnValuesChannel)
+	var actedOnValuesChannel = powerOf(generatedChannel)
+	var actedOnValuesChannel2 = powerOf(actedOnValuesChannel)
 
 	// range removes the channel
 	for n := range actedOnValuesChannel2 {
@@ -24,7 +24,7 @@ func Pipelines() {
 	}
 }
 
-// FactorialChallenge is exported is exported
+// FactorialChallengeSolution is exported is exported
 func FactorialChallengeSolution() {
 
 	// make channel of subject numbers
@@ -70,7 +70,7 @@ func generateFactorialNumbers(in <-chan int) <-chan int {
 }
 
 func factorial(num int) int {
-	var total int = 1
+	var total = 1
 
 	for i := num; i > 0; i-- {
 		total *= i
@@ -125,7 +125,7 @@ var mutex sync.Mutex
 
 // FactorialChallengeWithWGMutex is exported
 func FactorialChallengeWithWGMutex() {
-	var numIterations int = 2
+	var numIterations = 2
 
 	channelSlice := make([]chan int, 100)
 
@@ -170,7 +170,7 @@ func FactorialChallengeWithWGMutex() {
 }
 
 func generateChannel(nums ...int) <-chan int {
-	var out chan int = make(chan int)
+	var out = make(chan int)
 
 	go func() {
 		for _, n := range nums {

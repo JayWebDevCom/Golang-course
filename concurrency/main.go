@@ -10,10 +10,10 @@ import (
 	"./atomicity"
 	"./challenge"
 	"./channels"
-	"./channelsAsArguments"
-	"./mutexConcurrency"
+	"./channelsasarguments"
+	"./mutexconcurrency"
 	"./racecondition"
-	"./sameChannel"
+	"./samechannel"
 	"./semaphores"
 	"./pipelines"
 	"./fanoutfanin"
@@ -87,7 +87,7 @@ func main() {
 	racecondition.Race()
 
 	fmt.Println("Now demonstrating the mutex")
-	mutexConcurrency.Mutex()
+	mutexconcurrency.Mutex()
 
 	fmt.Println("Now demonstrating the atomicity")
 	atomicity.Atomicity()
@@ -99,7 +99,7 @@ func main() {
 	channels.ClosedChannel()
 
 	fmt.Println("Now demonstrating functions writing to the same channel")
-	sameChannel.SameChannel()
+	samechannel.SameChannel()
 
 	fmt.Println("Now demonstrating semaphores")
 	semaphores.Semaphore()
@@ -108,10 +108,10 @@ func main() {
 	semaphores.SemaphoreLoop()
 
 	fmt.Println("Now demonstrating channels as arguments")
-	channelsAsArguments.ChannelsAsArguments()
+	channelsasarguments.ChannelsAsArguments()
 
 	fmt.Println("Now demonstrating channels with direction")
-	channelsAsArguments.ChannelsDirection()
+	channelsasarguments.ChannelsDirection()
 
 	fmt.Println("Now demonstrating Deadlock challenge one")
 	challenge.DeadlockChallengeOne()

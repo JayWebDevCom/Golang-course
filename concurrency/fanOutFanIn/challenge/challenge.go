@@ -71,6 +71,7 @@ func factDeadlockChallenge(num int) int {
 	return total
 }
 
+// IncrementorSolution is exported
 func IncrementorSolution() {
 	in := incrementor(2)
 

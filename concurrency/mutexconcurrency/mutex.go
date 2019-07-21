@@ -1,4 +1,4 @@
-package mutexConcurrency
+package mutexconcurrency
 
 import (
 	"fmt"

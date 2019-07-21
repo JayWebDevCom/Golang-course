@@ -44,7 +44,7 @@ func UnbufferedChannel() {
 	time.Sleep(time.Second)
 }
 
-// BufferedChannel is exported
+// ClosedChannel is exported
 func ClosedChannel() {
 
 	c := make(chan int)

@@ -1,4 +1,4 @@
-package channelsAsArguments
+package channelsasarguments
 
 import (
 	"fmt"

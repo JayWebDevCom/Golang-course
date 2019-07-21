@@ -1,4 +1,4 @@
-package sameChannel
+package samechannel
 
 import (
 	"fmt"

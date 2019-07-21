@@ -23,7 +23,7 @@ func DeadlockChallengeOne() {
 	fmt.Println(<-c)
 }
 
-// DeadlockChallengeTwo is exported
+// DeadLockChallengeTwo is exported
 func DeadLockChallengeTwo() {
 	/*
 		only prints zero
@@ -50,7 +50,7 @@ func DeadLockChallengeTwo() {
 	}
 }
 
-// DeadlockChallengeThree is exported
+// DeadLockChallengeThree is exported
 func DeadLockChallengeThree() {
 	/*
 		all go routines are asleep

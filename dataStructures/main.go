@@ -40,25 +40,25 @@ new underlying array is created and replaces the initial aray
 */
 
 import (
-	. "./array"
-	. "./maps"
-	. "./slice"
+	"./array"
+	"./maps"
+	"./slice"
 )
 
 func main() {
-	Array1()
-	Array2()
+	array.Array1()
+	array.Array2()
 
-	Slice1()
-	Slice2()
-	Slice3()
-	Slice4()
-	Slice5()
-	Slice6()
-	Slice7()
-	Slice8()
+	slice.Slice1()
+	slice.Slice2()
+	slice.Slice3()
+	slice.Slice4()
+	slice.Slice5()
+	slice.Slice6()
+	slice.Slice7()
+	slice.Slice8()
 
-	Map1()
-	Map2()
-	Map3()
+	maps.Map1()
+	maps.Map2()
+	maps.Map3()
 }
